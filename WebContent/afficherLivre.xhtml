@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Bibliothèque</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h1>Afficher un livre</h1>
+	<fieldset>
+		<legend>choisir un livre</legend>
+		<h:form>
+			<h:selectOneMenu value="#{livre.id}">
+				<f:selectItems value="#{livreDao.formatList()}" var="l" itemValue="#{l.key}" itemLabel="#{l.value}"/>
+			</h:selectOneMenu>
+			<h:commandButton action="#{livre.get()}" value="Afficher" />
+		</h:form>
+	</fieldset>
+	Titre : <h:outputText value="#{livreDao.recupererLivre().titre}" /><br/>
+	Auteur : <h:outputText value="#{livreDao.recupererLivre().auteur}" /><br/>
+	Date : <h:outputText value="#{livreDao.recupererLivre().date}" /><br/>
+	Prix : <h:outputText value="#{livreDao.recupererLivre().prix}" /><br/>
+</h:body>
+</html>
